@@ -15,7 +15,6 @@ const index = () => {
         start: "top",
         end: "+=500px",
         scrub: true,
-        markers: true,
       },
     });
 

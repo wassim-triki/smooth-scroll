@@ -30,7 +30,6 @@ function AnimatedText({ children }) {
         start: "0px bottom",
         end: "bottom+=400px bottom",
         scrub: true,
-        markers: true,
       },
       left: "-200px",
       opacity: 0,

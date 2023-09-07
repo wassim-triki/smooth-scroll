@@ -2,9 +2,10 @@ import styles from "./style.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 const index = () => {
   const [selectedProject, setSelectedProject] = useState(0);
+  const imageContainer = useRef(null);
   const projects = [
     {
       title: "Salar de Atacama",
@@ -23,10 +24,20 @@ const index = () => {
       src: "miniques_lagoon.jpg",
     },
   ];
+
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.create({
+      trigger: imageContainer.current,
+      start: "-=100px",
+      end: document.body.offsetHeight,
+      pin: true,
+    });
+  }, []);
   return (
     <div className={styles.projects}>
       <div className={styles.projectDescription}>
-        <div className={styles.imageContainer}>
+        <div ref={imageContainer} className={styles.imageContainer}>
           <Image
             src={`/images/${projects[selectedProject].src} `}
             fill={true}
